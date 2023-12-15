@@ -47,14 +47,28 @@ th.row__descript {
 }
 
 .row__name {
-  width: 10%;
   display: flex;
   align-items: center;
+  width: 10%;
   font-size: 18px;
 }
 
+.row__photo {
+  width: 10%;
+  display: flex;
+  align-items: center;
+/* background-color: white; */
+}
+
+.category-image {
+  max-width: 100%;
+  object-fit: contain;
+}
+
 .row__descript {
-  width: 50%;
+  display: flex;
+  align-items: center;
+  width: 40%;
   text-indent: 15px;
 }
 
@@ -110,7 +124,6 @@ background: linear-gradient(160deg, rgba(178,255,185,1) 0%, rgba(141,250,179,1) 
 }
 
 .btn--delete {
-  /* background-color: red; */
   background: rgb(245,100,100);
   background: linear-gradient(125deg, rgba(245,100,100,1) 0%, rgba(255,115,84,1) 35%, rgba(255,150,2,1) 100%);
 }
@@ -150,8 +163,6 @@ input.edit-name {
 }
 
 input.edit-descr {
-  /* grid-column: span 8; */
-  /* height: 65px; */
   width: 70%;
 }
 

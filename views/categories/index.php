@@ -40,6 +40,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
       <?php foreach ($categories as $key => $category) { ?>     
         <tr class="row">
           <td class="row__name"> <?= $category->name ?></td>
+          <td class="row__photo">
+            <img src="<?= $category->photo ?>" alt="photo" class="category-image">
+          </td>
           <td class="row__descript"> <?= $category->description ?></td>
           <td class="row__controll controlls">
             <div class="controlls__item">

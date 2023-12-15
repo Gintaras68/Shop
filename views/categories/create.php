@@ -31,6 +31,11 @@
       </div>
 
       <div class="edit-form__items">
+        <label for="edit-descr">Nuotraukos adresas</label>
+        <input class="edit-descr" type="text" name="photo" id="edit-descr" value="https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-15.png"></input>
+      </div>
+
+      <div class="edit-form__items">
         <label for="edit-descr">Kategorijos aprašymas</label>
         <input class="edit-descr" type="text" name="description" id="edit-descr"></input>
       </div>

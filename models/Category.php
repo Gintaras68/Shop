@@ -4,12 +4,14 @@
     public $id;
     public $name;
     public $description;
+    public $photo;
 
-    public function __construct($id = 0, $name = "", $description = "")
+    public function __construct($id = 0, $name = "", $description = "", $photo = "")
     {
       $this->id = $id;
       $this->name = $name;
       $this->description = $description;
+      $this->photo = $photo;
     }
 
     //* STATINĖ f-ja , surenkanti iš bazės visas kategorijas
@@ -18,7 +20,7 @@
       $db = new mysqli("localhost", "root", "", "web_11_23_shop");                    //* organizuojame ryšį su DB
       $result = $db->query("SELECT * from categories");                               //* gauname pagal užklausą duomenis 
       while ($row = $result->fetch_assoc()) {
-        $categories[] = new Category($row['id'], $row['name'], $row['description']);  //* kuriam objektus ir dedam į masyvą
+        $categories[] = new Category($row['id'], $row['name'], $row['description'], $row['photo']);  //* kuriam objektus ir dedam į masyvą
       }
       $db->close();                                                                   //* uždarome jungtį su DB
       return $categories;                                                             //* grąžinam masyvą užsakovui
@@ -28,7 +30,7 @@
     public static function find($id) {
       $author = new Category();                     //*  apsauga nuo klaidų  - atsarginis tuščias objektas
       $db = new mysqli("localhost", "root", "", "web_11_23_shop");
-      $sql = "SELECT `id`, `name`, `description`    
+      $sql = "SELECT `id`, `name`, `description`, `photo`    
               FROM `categories`
               WHERE id = ?;";
       $stmt = $db->prepare($sql);
@@ -37,7 +39,7 @@
       $result = $stmt->get_result();
 
       while ($row = $result->fetch_assoc()) {
-        $author = new Category($row['id'], $row['name'], $row['description']);
+        $author = new Category($row['id'], $row['name'], $row['description'], $row['photo']);
       }
       $db->close();
 
@@ -47,9 +49,9 @@
     //* F-ja, atnaujinant `categories` lentelės įrašą pagal ID (gali pasikeisti laukų duomenys)
     public function update() {
       $db = new mysqli("localhost", "root", "", "web_11_23_shop");
-      $sql = "UPDATE `categories` SET `name`= ?,`description`= ? WHERE id = ?";
+      $sql = "UPDATE `categories` SET `name`= ?,`description`= ?, `photo`= ? WHERE id = ?";
       $stmt = $db->prepare($sql);
-      $stmt->bind_param("ssi", $this->name, $this->description, $this->id);
+      $stmt->bind_param("sssi", $this->name, $this->description, $this->photo, $this->id);
       $stmt->execute();
       $db->close();
     }
@@ -57,9 +59,9 @@
     //* F-ja, įterpianti į 'categories'lentelę naują įrašą (indeksas pridedamas automatiškai)
     public function save() {
         $db = new mysqli("localhost", "root", "", "web_11_23_shop");
-        $sql = "INSERT INTO `categories`(`name`, `description`) VALUES (?, ?)";
+        $sql = "INSERT INTO `categories`(`name`, `description`, `photo`) VALUES (?, ?, ?)";
         $stmt = $db->prepare($sql);
-        $stmt->bind_param("ss", $this->name, $this->description);
+        $stmt->bind_param("sss", $this->name, $this->description, $this->photo);
         $stmt->execute();
         $db->close();
     }
