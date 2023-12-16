@@ -27,7 +27,7 @@
 
       <div class="edit-form__items">
         <label for="edit-name">Kategorijos pavadinimas</label>
-        <input class="edit-name" type="text" name="name" id="edit-name">
+        <input class="edit-name" type="text" name="name" id="edit-name" tabindex="2">
       </div>
 
       <div class="edit-form__items">

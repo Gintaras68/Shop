@@ -33,6 +33,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     <table class="table">
       <tr class="row">
         <th class="row__name">Kategorija</th>
+        <th class="row__photo"></th>
         <th class="row__descript">Aprašymas</th>
         <th class="row__controll"> </th>
       </tr>
