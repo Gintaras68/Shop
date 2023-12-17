@@ -1,8 +1,11 @@
-<?php    
+<?php  
+  // echo $_SERVER['REQUEST_METHOD']."<br>";
+
   if (!isset($_GET['id'])) {          //* čia galima patekti tik nurodant kategorijos indeksą !
     header("Location: ./index.php");  //* priešingu atveju saugumo sumetimais nukelia į pradinį puslapį.
   }
-
+  // echo "GET id=".$_GET['id']." - kategorijos ID.<br>";
+  
   include "../../controllers/CategoryController.php";
   include "../../controllers/ItemController.php";
 
@@ -28,6 +31,9 @@
 </head>
 <body>
   <div class="container">
+    <a href="index.php" class="link-back">
+      <img src="../../img/house-64.png" width="32" height="32" alt="">
+    </a>
     <h1>Kategorija "<?= $category->name ?>" </h1>
     <p class="description"> <?= $category->description ?></p>
 
@@ -36,7 +42,7 @@
         <?php foreach ($items as $key => $item) { ?>     
         
         <li class="products__item">
-          <a class="products__link" href="../items/index.php<?='?id='.$item->id?>">
+          <a class="products__link" href="../items/show.php<?='?id='.$item->id?>">
             <img src="<?=$item->photo ?>" alt="">
             <h2 class="products__title"><?= $item->title ?></h2>
           </a>
@@ -44,6 +50,12 @@
 
         <?php } ?>
       </ul>
+    </div>
+
+    <div class="control">
+      <div class="create">
+          <a href="./../items/create.php?cat=<?=$item->category_id?>" class="btn btn--create">Add new item</a>
+      </div>
     </div>
     
   </div>

@@ -74,7 +74,6 @@ th.row__descript {
 
 .row__controll {
   width: 30%;
-
 }
 
 .controlls {
@@ -87,6 +86,10 @@ th.row__descript {
   align-items: center;
   padding: 5px;
   border: 1px solid transparent;
+}
+
+.controlls__item form {
+  margin: 0;
 }
 
 .btn {
@@ -130,6 +133,10 @@ background: linear-gradient(160deg, rgba(178,255,185,1) 0%, rgba(141,250,179,1) 
 
 .btn--create {
   text-align: center;
+  color: black;
+}
+.btn--create:active {
+  color: #aaa;
 }
 
 .create {
@@ -158,6 +165,17 @@ background: linear-gradient(160deg, rgba(178,255,185,1) 0%, rgba(141,250,179,1) 
   border-radius: 5px;
 }
 
+.edit-form__items p {
+  display: inline-block;
+  width: 170px;
+  padding: 5px;
+  margin: 0;
+  margin-bottom: 30px;
+  background-color: white;
+  border: 2px solid #aaa;
+  border-radius: 5px;
+}
+
 input.edit-name {
   grid-column: span 3;
 }
@@ -178,9 +196,14 @@ p.description {
   text-align: center;
 }
 
+.products {
+  margin-bottom: 30px;
+}
+
 .products__list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
   margin: 0;
   padding-left: 0;
@@ -191,10 +214,11 @@ p.description {
   flex-basis: 30%;
   flex-grow: 1;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: space-between;
   padding: 10px;
   max-width: 250px;
+  min-height: 300px;
   background-color: white;
   border-radius: 10px;
 }
@@ -204,7 +228,6 @@ p.description {
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  /* max-width: 200px; */
   color: black;
   text-decoration: none;
 }
@@ -213,3 +236,68 @@ p.description {
   max-width: 100%;
   object-fit: contain;
 }
+
+.products__title {
+  margin: 0;
+  margin-top: auto;
+  text-align: center;
+}
+
+.present {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+  border-radius: 15px;
+  padding: 15px;
+  margin-bottom: 40px;
+  background-color: white;
+  box-shadow: 0 0 20px 5px rgba(0,0,0,0.2);
+}
+
+.present__image {
+  /* width: 200px; */
+}
+
+.present__image img {
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.present__info {
+  font-size: 20px;
+}
+
+.info__price span {
+  color: red;
+  font-size: 24px;
+}
+
+.item-control {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  border-radius: 15px;
+  min-height: 30px;
+  padding: 15px;
+  background-color: white;
+  box-shadow: 0 0 20px 5px rgba(0,0,0,0.2);
+}
+
+.item-control__form {
+  margin: 0;
+}
+
+.item-control__form button {
+  display: block;
+  width: 120px;
+  margin-inline: auto;
+}
+
+.form-select {
+  padding: 5px;
+  width: 200px;
+  margin-bottom: 10px;
+  border: 2px solid #aaa;
+  border-radius: 5px;
+}
+

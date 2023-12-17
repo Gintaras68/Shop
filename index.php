@@ -1,6 +1,6 @@
 <?php
     
-    //? atėjus į pagrindinį - perveda į už atvaizdavimą atsakingą puslapį.
+    //? atėjus į pagrindinį - perveda į už kategorijų atvaizdavimą atsakingą puslapį.
     
     header("Location: ./views/categories");    
     die;
@@ -8,15 +8,15 @@
 ?>
 
 <?php
-$servername = "localhost";          //* naudojames vietiniu serveriu ...
-$username = "root";                 //* tai vartotojas "pagal nutylėjimą"
-$password = "";                     //*  ir jo slaptažodis "pagal nutylėjimą"
-$dbname = "web_11_23_shop";      //* pavadinimas duomenų bazės, prie kurios jungsimės
+// $servername = "localhost";          //* naudojames vietiniu serveriu ...
+// $username = "root";                 //* tai vartotojas "pagal nutylėjimą"
+// $password = "";                     //*  ir jo slaptažodis "pagal nutylėjimą"
+// $dbname = "web_11_23_shop";      //* pavadinimas duomenų bazės, prie kurios jungsimės
 
-$conn = new MySQLi($servername, $username, $password, $dbname); //* sukuriame ryšio su duomenų baze kanalą - tai klasės  MySQLi egzempliorius
+// $conn = new MySQLi($servername, $username, $password, $dbname); //* sukuriame ryšio su duomenų baze kanalą - tai klasės  MySQLi egzempliorius
 
-$sql = "SELECT * FROM categories; ";   //* suformuojama užklausos eilutė
-$result = $conn->query($sql);       //* užklausa perduodama duomenų bazei (funkcija  query() ) ir ji grąžina darbo rezultatą - objektą (išsaugome kintamajame)
+// $sql = "SELECT * FROM categories; ";   //* suformuojama užklausos eilutė
+// $result = $conn->query($sql);       //* užklausa perduodama duomenų bazei (funkcija  query() ) ir ji grąžina darbo rezultatą - objektą (išsaugome kintamajame)
 ?>
 
 
@@ -30,15 +30,15 @@ $result = $conn->query($sql);       //* užklausa perduodama duomenų bazei (fun
     <title>Shop</title>
 </head>
 <body>
-    <h1>Testuojam jungtį</h1>
+    <h1>Pirminis puslapis peradresavimui</h1>
     
     <?php
     //? duomenų bazė grąžino objektą. Jo funkcija  fetch_assoc()  ima sekančią masyvo eilutę ir ją priskiriam kintamajam $row
-    while ($row = $result->fetch_assoc()) {     //*  išveda gautą užklausos rezultatą į naršyklę kaip eilę pastraipų
-        echo "<p>id: " . $row["id"] . " - Name: " . $row["name"] . " Aprašymas: " . $row["description"] . "</p>";
-    }
+    // while ($row = $result->fetch_assoc()) {     //*  išveda gautą užklausos rezultatą į naršyklę kaip eilę pastraipų
+    //     echo "<p>id: " . $row["id"] . " - Name: " . $row["name"] . " Aprašymas: " . $row["description"] . "</p>";
+    // }
 
-    $conn->close();                              //* uždarome ryšio su duomenų baze kanalą - panaikname objektą.
+    // $conn->close();                              //* uždarome ryšio su duomenų baze kanalą - panaikname objektą.
     ?>
 </body>
 </html>

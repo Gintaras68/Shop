@@ -1,17 +1,10 @@
 <?php
-  //* Šiame puslapyje parodomi visi  lentelės 'categories' įrašai - visos prekių kategorijos
-  //* kartu pridedami mmygtukai, kurie gali nuvesti į :
-  //*     - puslapį  show.php - ten atvaizduojami konkrečią kategoriją atititnkančios prekės  - prekių kortelės
-  //*     - puslapį  edit.php - ten yra galimybė paredaguoti kategorijos pavadinimą arba aprašymą
-  //*     - puslapį  delete.php - ten galime panaikinti pasirinktą kategoriją
-  //* papildomai yra nuoroda į naujos kategorijos kūrimo puslapį  create.php .
-  
   include "../../controllers/CategoryController.php";
 
-if($_SERVER['REQUEST_METHOD'] == "POST"){
+  if($_SERVER['REQUEST_METHOD'] == "POST"){
     CategoryController::destroy($_POST['id']);
     header("Location: ./index.php");
-}
+  }
 
   $categories = CategoryController::getAll();   //* iš duomenų bazės paimamos visos kategorijos
 ?>
@@ -46,15 +39,18 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
           </td>
           <td class="row__descript"> <?= $category->description ?></td>
           <td class="row__controll controlls">
+
             <div class="controlls__item">
               <a href="./show.php?id=<?= $category->id ?>" class="btn btn--show">go to</a>
             </div>
+
             <div class="controlls__item">
               <form action="./edit.php" method="get">
                 <input type="hidden" name="id" value="<?= $category->id ?>">
                 <button class="btn btn--edit" type="submit">edit</button>
               </form>
             </div>
+
             <div class="controlls__item">
               <form action="./index.php" method="post">
               <input type="hidden" name="id" value="<?= $category->id ?>">
@@ -68,7 +64,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     </table>
     
     <div class="create">
-      <a href="./create.php" class="btn btn--create">Create new group</a>
+      <a href="./create.php" class="btn btn--create">Create new category</a>
     </div>
   </div>
 </body>
