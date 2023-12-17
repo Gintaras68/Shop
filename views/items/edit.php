@@ -53,7 +53,7 @@
 
       <div class="edit-form__items">
         <label for="edit-descr">Nuotraukos adresas</label>
-        <input class="edit-descr" type="text" name="photo" id="edit-descr" value="<?= $item->photo ?>""></input>
+        <input class="edit-descr" type="text" name="photo" id="edit-descr" value="<?= $item->photo ?>"></input>
       </div>
 
       <div class="edit-form__items">
@@ -67,8 +67,8 @@
       </div>      
       
       <div class="edit-form__items">
-        <input type="hidden" name="id" value="<?=$item->id?>">
         <button type="submit" class="btn edit-form__button">Išsaugoti duomenis</button>
+        <input type="hidden" name="id" value="<?=$item->id?>">
         <a href="./show.php?id=<?=$_GET['id']?>" class="btn">Back</a>
       </div>
     </form>

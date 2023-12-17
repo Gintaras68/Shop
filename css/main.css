@@ -3,7 +3,17 @@ body {
   background: linear-gradient(83deg, rgba(243,249,255,1) 0%, rgba(226,226,247,1) 35%, rgba(227,250,247,1) 100%);
 }
 
+.link-back {
+  display: inline-block;
+}
+.link-back:hover {
+  transform: scale(1.1);
+  transition: transform 0.3 ease-in-out;
+}
+
 h1 {
+  margin: 0;
+  margin-bottom: 20px;
   text-align: center;
 }
 
@@ -104,6 +114,7 @@ th.row__descript {
   text-transform: uppercase;
   border: 2px solid #aaa;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .btn:hover {
@@ -130,6 +141,15 @@ background: linear-gradient(160deg, rgba(178,255,185,1) 0%, rgba(141,250,179,1) 
   background: rgb(245,100,100);
   background: linear-gradient(125deg, rgba(245,100,100,1) 0%, rgba(255,115,84,1) 35%, rgba(255,150,2,1) 100%);
 }
+.btn--delete:disabled {
+  background: none;
+  background-color: #ddd;
+  cursor: auto;
+}
+.btn--delete:disabled:hover {
+  box-shadow: none;
+}
+
 
 .btn--create {
   text-align: center;
@@ -221,7 +241,12 @@ p.description {
   min-height: 300px;
   background-color: white;
   border-radius: 10px;
+  transition: box-shadow 0.3s ease-in-out;
 }
+.products__item:hover {
+  box-shadow: 0 0 15px 5px rgba(0,0,0,0.2);
+}
+
 
 .products__link {
   display: flex;
@@ -252,10 +277,6 @@ p.description {
   margin-bottom: 40px;
   background-color: white;
   box-shadow: 0 0 20px 5px rgba(0,0,0,0.2);
-}
-
-.present__image {
-  /* width: 200px; */
 }
 
 .present__image img {
@@ -301,3 +322,6 @@ p.description {
   border-radius: 5px;
 }
 
+.control {
+  margin-bottom: 30px;
+}

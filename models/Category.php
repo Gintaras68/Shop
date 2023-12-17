@@ -76,5 +76,19 @@
         $db->close();
     }
 
+    public static function notEmptyCategory() {
+      $db = new mysqli("localhost", "root", "", "web_11_23_shop");
+      $result = $db->query("SELECT `categories`.id
+                            FROM `categories` JOIN `items`
+                            ON `categories`.id = `items`.`category_id`
+                            GROUP BY `categories`.`id`");
+      while ($row = $result->fetch_assoc()) {
+        $categories[] = ($row);  //* kuriam objektus ir dedam į masyvą
+      }
+ 
+      $db->close();
+      return $categories;
+    }
+
   }
 ?>

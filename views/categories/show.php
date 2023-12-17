@@ -41,9 +41,11 @@
       <ul class="products__list">
         <?php foreach ($items as $key => $item) { ?>     
         
+        <?php ($item->photo != "") ? $photo = $item->photo : $photo = "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-15.png" ; ?>
+
         <li class="products__item">
           <a class="products__link" href="../items/show.php<?='?id='.$item->id?>">
-            <img src="<?=$item->photo ?>" alt="">
+            <img src="<?=$photo ?>" alt="">
             <h2 class="products__title"><?= $item->title ?></h2>
           </a>
         </li>
@@ -54,7 +56,7 @@
 
     <div class="control">
       <div class="create">
-          <a href="./../items/create.php?cat=<?=$item->category_id?>" class="btn btn--create">Add new item</a>
+          <a href="./../items/create.php?cat=<?=$_GET['id']?>" class="btn btn--create">Add new item</a>
       </div>
     </div>
     

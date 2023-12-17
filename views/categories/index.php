@@ -1,14 +1,16 @@
 <?php
   include "../../controllers/CategoryController.php";
-
-  if($_SERVER['REQUEST_METHOD'] == "POST"){
+  
+  if($_SERVER['REQUEST_METHOD'] == "POST"){       //* trynimui grįžtame iš formos su POST
     CategoryController::destroy($_POST['id']);
     header("Location: ./index.php");
   }
-
+  
   $categories = CategoryController::getAll();   //* iš duomenų bazės paimamos visos kategorijos
-?>
+  
+  $categoriesNotEmpty = Category::notEmptyCategory();
 
+  ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,10 +34,20 @@
       </tr>
 
       <?php foreach ($categories as $key => $category) { ?>     
+
+        <?php $isEmpty = " disabled"; 
+          foreach ($categoriesNotEmpty as $value) {
+            if (implode($value) == $category->id) {
+              $isEmpty = "";
+            } ;
+          }
+        ?>
+       
         <tr class="row">
           <td class="row__name"> <?= $category->name ?></td>
           <td class="row__photo">
-            <img src="<?= $category->photo ?>" alt="photo" class="category-image">
+            <?php ($category->photo != "") ? $photo = $category->photo : $photo = "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-15.png" ; ?>
+            <img src="<?= $photo ?>" alt="photo" class="category-image">
           </td>
           <td class="row__descript"> <?= $category->description ?></td>
           <td class="row__controll controlls">
@@ -54,7 +66,7 @@
             <div class="controlls__item">
               <form action="./index.php" method="post">
               <input type="hidden" name="id" value="<?= $category->id ?>">
-              <button class="btn btn--delete">delete</button>
+              <button class="btn btn--delete"<?= $isEmpty?>>delete</button>
             </form>
             </div>
           </td>
