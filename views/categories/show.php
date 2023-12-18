@@ -1,10 +1,10 @@
 <?php  
   // echo $_SERVER['REQUEST_METHOD']."<br>";
 
-  if (!isset($_GET['id'])) {          //* čia galima patekti tik nurodant kategorijos indeksą !
+  if (!isset($_GET['category-id'])) {          //* čia galima patekti tik nurodant kategorijos indeksą !
     header("Location: ./index.php");  //* priešingu atveju saugumo sumetimais nukelia į pradinį puslapį.
   }
-  // echo "GET id=".$_GET['id']." - kategorijos ID.<br>";
+  // echo "GET id=".$_GET['category-id']." - kategorijos ID.<br>";
   
   include "../../controllers/CategoryController.php";
   include "../../controllers/ItemController.php";
@@ -13,8 +13,8 @@
 
 
  //* jeigu atėjosme per GET su perduotu indeksu - dirbsime su šia kategorija
- $category = CategoryController::find($_GET['id']);  //*  kategorijos pavadinimas  
- $items = ItemController::findItemsByCategory($_GET['id']);
+ $category = CategoryController::find($_GET['category-id']);  //*  kategorijos pavadinimas  
+ $items = ItemController::findItemsByCategory($_GET['category-id']);
 //  print_r($items);die;
 
 ?>
@@ -41,22 +41,21 @@
       <ul class="products__list">
         <?php foreach ($items as $key => $item) { ?>     
         
-        <?php ($item->photo != "") ? $photo = $item->photo : $photo = "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-15.png" ; ?>
-
-        <li class="products__item">
-          <a class="products__link" href="../items/show.php<?='?id='.$item->id?>">
-            <img src="<?=$photo ?>" alt="">
-            <h2 class="products__title"><?= $item->title ?></h2>
-          </a>
-        </li>
-
+          <?php ($item->photo != "") ? $photo = $item->photo : $photo = "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-15.png" ; ?>
+          <li class="products__item">
+            <a class="products__link" href="../items/show.php<?='?id='.$item->id?>">
+              <img src="<?=$photo ?>" alt="">
+              <h2 class="products__title"><?= $item->title ?></h2>
+            </a>
+          </li>
+          
         <?php } ?>
       </ul>
     </div>
 
     <div class="control">
       <div class="create">
-          <a href="./../items/create.php?cat=<?=$_GET['id']?>" class="btn btn--create">Add new item</a>
+          <a href="./../items/create.php?category-id=<?=$_GET['category-id']?>" class="btn btn--create">Add new item</a>
       </div>
     </div>
     

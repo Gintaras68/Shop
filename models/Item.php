@@ -24,21 +24,30 @@
       $db = new mysqli("localhost", "root", "", "web_11_23_shop");                    //* organizuojame ryšį su DB
       $result = $db->query("SELECT * from items");                                    //* gauname pagal užklausą duomenis 
       while ($row = $result->fetch_assoc()) {
-        $items[] = new Item($row['id'], $row['title'], $row['description'], $row['photo'], $row['category_id']);  //* kuriam objektus ir dedam į masyvą
+        $items[] = new Item($row['id'], $row['title'], $row['price'], $row['description'], $row['photo'], $row['category_id']);  //* kuriam objektus ir dedam į masyvą
       }
       $db->close();                                                                   //* uždarome jungtį su DB
       return $items;                                                                  //* grąžinam masyvą užsakovui
     }
 
     //* STATINĖ f-ja , surenkanti iš bazės visas nurodytos kategorijos prekes
-    public static function findAllByCategory($id) {
+    public static function findAllByCategory($categoryId) {
       $items = [];                     
       $db = new mysqli("localhost", "root", "", "web_11_23_shop");
       $sql = "SELECT `id`, `title`, `price`, `description`, `photo`, `category_id`
               FROM   `items`
-              WHERE  category_id = ?;";                 //* užklausos SQL
-      $stmt = $db->prepare($sql);                         //* apsauga                          
-      $stmt->bind_param("i", $id);
+              WHERE  ";                 //* užklausos SQL
+      
+      if ($categoryId != 0) {
+        $sql .= "category_id = ?;";
+        $stmt = $db->prepare($sql);                         //* apsauga                          
+        $stmt->bind_param("i", $categoryId);
+        $stmt->execute();
+      } else {
+        $sql .= "1;";
+        $stmt = $db->prepare($sql);                         //* apsauga                          
+      }
+      
       $stmt->execute();
       $result = $stmt->get_result();                      //* gautas iš DB rezultatas
 
@@ -68,7 +77,7 @@
       return $item;
     }    
 
-    //* F-ja, atnaujinant `items` lentelės įrašą pagal ID (gali pasikeisti laukų duomenys)
+    //* F-ja, atnaujinant `items` lentelės įrašą šio objekto duomenimis pagal ID (gali pasikeisti laukų duomenys)
     public function update() {
       $db = new mysqli("localhost", "root", "", "web_11_23_shop");
       $sql = "UPDATE `items` SET `title`= ?, `price`= ?, `description`= ?, `photo`= ?, `category_id`= ? 
@@ -79,7 +88,7 @@
       $db->close();
     }
     
-    //* F-ja, įterpianti į 'categories'lentelę naują įrašą (indeksas pridedamas automatiškai)
+    //* F-ja, įterpianti į 'categories'lentelę naują įrašą (indeksas pridedamas automatiškai) su objekto duomenimis
     public function saveNew() {
       $db = new mysqli("localhost", "root", "", "web_11_23_shop");
       $sql = "INSERT INTO `items`(`title`, `price`, `description`, `photo`, `category_id`) VALUES (?, ?, ?, ?, ?)";

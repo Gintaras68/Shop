@@ -1,24 +1,17 @@
 <?php 
   //  echo $_SERVER['REQUEST_METHOD']."<br>";                                          //!  laikina informacija apie įėjimo būdą
-  //* perduodamas indeksas atitinka kategoriją, ...
-
+  
   include "../../controllers/ItemController.php";
   
   //* grįžus į puslapį su POST užklausa (po mygtuko "išsaugoti" paspaudimo), mes :
   if($_SERVER['REQUEST_METHOD'] == "POST"){
     ItemController::storeNew();               //* - siunčiam duomenis į DB (pdate) panaudojant modelio statinę funkciją ir POST, o po to 
     $key= $_POST['category_id'];
-    header("Location: ../categories/show.php?id=".$key);          //* - pereinam į pagrindinį puslapį
+    header("Location: ../categories/show.php?category-id=".$key);          //* - pereinam į pagrindinį puslapį
   }
   
-  // echo var_dump($_GET);       //! laikina info apie GET turinį
-  // echo "<br> GET cat=".$_GET['cat']." - kategorijos, kuriai priklausys nauja prekė, ID.<br>"; //!  laikina info. apie priimtą GET parametrą  
-
-  include "../../controllers/CategoryController.php";   //* prireiks jei norime perrinkti kategorijas
+  include "../../controllers/CategoryController.php";   
   $categories = CategoryController::getAll();           //* iš duomenų bazės paimamos visos kategorijos
-
-  $category = CategoryController::find($_GET['cat']); 
-  //  print_r($category);die;
 ?>
 
 
@@ -48,28 +41,28 @@
 
       <div class="edit-form__items">
         <label for="edit-descr">Aprašymas</label>
-        <input class="edit-descr" type="text" name="description" id="edit-descr"></input>
+        <textarea class="edit-descr" name="description" id="edit-desc" cols="60" rows="8"></textarea>
       </div>
 
       <div class="edit-form__items">
-        <label for="edit-descr">Nuotraukos adresas</label>
-        <input class="edit-descr" type="text" name="photo" id="edit-descr"></input>
+        <label for="edit-photo">Nuotraukos adresas</label>
+        <input class="edit-photo" type="text" name="photo" id="edit-photo"></input>
       </div>
 
       <div class="edit-form__items">
         <label for="edit-category">Kategorija</label>
         <select class="form-select" name="category_id" id="edit-category">
           <?php foreach ($categories as $check) { ?>
-            <?php ($check->id == $_GET['cat']) ? $atr = " selected" : $atr = "" ?>
+            <?php ($check->id == $_GET['category-id']) ? $atr = " selected" : $atr = "" ?>
             <option value="<?= $check->id ?>" <?= $atr ?>><?= $check->name ?></option>
           <?php } ?>
         </select>
       </div>
 
 
-      <div class="edit-form__items">
+      <div class="edit-form__controls">
         <button type="submit" class="btn edit-form__button">Create</button>
-        <a href="../categories/show.php?id=<?= $_GET['cat'] ?>" class="btn">Back</a>
+        <a href="../categories/show.php?category-id=<?= $_GET['category-id'] ?>" class="btn">Back</a>
       </div>
       
     </form>

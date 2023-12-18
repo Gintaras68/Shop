@@ -9,7 +9,7 @@
   //*     - grįžtame atgal su GET (neužmirštame savo indekso!)
   if($_SERVER['REQUEST_METHOD'] == "POST"){
     ItemController::update($_POST['id']);
-    header("Location: ./../categories/show.php?id=".$_POST['category_id'].'"');
+    header("Location: ./../categories/show.php?category-id=".$_POST['category_id'].'"');
   }
 
   // echo var_dump($_GET);       //! laikina info apie GET turinį
@@ -48,12 +48,12 @@
 
       <div class="edit-form__items">
         <label for="edit-descr">Aprašymas</label>
-        <input class="edit-descr" type="text" name="description" id="edit-descr" value="<?= $item->description ?>"></input>
+        <textarea class="edit-descr" name="description" id="edit-desc" cols="60" rows="8"><?= $item->description ?></textarea>
       </div>
 
       <div class="edit-form__items">
-        <label for="edit-descr">Nuotraukos adresas</label>
-        <input class="edit-descr" type="text" name="photo" id="edit-descr" value="<?= $item->photo ?>"></input>
+        <label for="edit-photo">Nuotraukos adresas</label>
+        <input class="edit-photo" type="text" name="photo" id="edit-photo" value="<?= $item->photo ?>"></input>
       </div>
 
       <div class="edit-form__items">
@@ -66,7 +66,7 @@
         </select>
       </div>      
       
-      <div class="edit-form__items">
+      <div class="edit-form__control">
         <button type="submit" class="btn edit-form__button">Išsaugoti duomenis</button>
         <input type="hidden" name="id" value="<?=$item->id?>">
         <a href="./show.php?id=<?=$_GET['id']?>" class="btn">Back</a>

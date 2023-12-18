@@ -3,9 +3,9 @@
 
   class ItemController {              //*  tai klasė, kurioje tik statinės funkcijos ↓
 
-    // public static function getAll() {       //* grąžina masyvą su kategorijų objektais,
-    //   return Item::all();               //*   (pasinaudojo statine kategorijų funkcija)
-    // }
+    public static function getAll() {       //* grąžina masyvą su kategorijų objektais,
+      return Item::all();               //*   (pasinaudojo statine kategorijų funkcija)
+    }
 
 
     public static function findItemsByCategory($id){       //* grąžina kategorijos su nurodytu ID prekių sąrašą

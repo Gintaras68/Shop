@@ -1,6 +1,7 @@
 body {
   background: rgb(243,249,255);
   background: linear-gradient(83deg, rgba(243,249,255,1) 0%, rgba(226,226,247,1) 35%, rgba(227,250,247,1) 100%);
+  font-size: 18px;
 }
 
 .link-back {
@@ -11,11 +12,45 @@ body {
   transition: transform 0.3 ease-in-out;
 }
 
+.header {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.header h1 {
+  margin-left: 30%;
+}
+
 h1 {
   margin: 0;
   margin-bottom: 20px;
   text-align: center;
 }
+
+.filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  min-height: 50px;
+  margin-bottom: 15px;
+}
+
+.filter__descr {
+  margin: 0;
+  font-size: 22px;
+}
+
+.filter__form-select {
+  padding: 5px 10px;
+  font-size: 18px;
+  border-radius: 6px;
+  min-width: 200px;
+}
+
+
 
 .table {
   max-width: 100%;
@@ -169,11 +204,12 @@ background: linear-gradient(160deg, rgba(178,255,185,1) 0%, rgba(141,250,179,1) 
 }
 
 .edit-form__items {
-  display: block;
+  display: grid;
+  grid-template-columns: 180px 1fr;
 }
 
 .edit-form__items label {
-  width: 180px;
+  /* width: 100%; */
   display: inline-block;
 }
 
@@ -183,6 +219,10 @@ background: linear-gradient(160deg, rgba(178,255,185,1) 0%, rgba(141,250,179,1) 
   margin-bottom: 10px;
   border: 2px solid #aaa;
   border-radius: 5px;
+}
+
+.edit-form__items textarea {
+  text-align: left;
 }
 
 .edit-form__items p {
@@ -197,7 +237,7 @@ background: linear-gradient(160deg, rgba(178,255,185,1) 0%, rgba(141,250,179,1) 
 }
 
 input.edit-name {
-  grid-column: span 3;
+  /* grid-column: span 3; */
 }
 
 input.edit-descr {

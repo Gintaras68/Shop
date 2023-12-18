@@ -32,5 +32,9 @@
       Category::destroy($id);                         //* panaudojama Category klasės statinė f-ja
     }
 
+    public static function getNotEmpty() {  //* grąžina indeksus kategorijų, kuriose yra bent viena prekė
+      return Category::notEmptyCategory();
+    }
+
   }
  ?>

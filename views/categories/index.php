@@ -8,7 +8,7 @@
   
   $categories = CategoryController::getAll();   //* iš duomenų bazės paimamos visos kategorijos
   
-  $categoriesNotEmpty = Category::notEmptyCategory();
+  $categoriesNotEmpty = CategoryController::getNotEmpty();
 
   ?>
 
@@ -23,7 +23,12 @@
 </head>
 <body>
   <div class="container">
-    <h1>Prekių kategorijos</h1>
+    <header class="header">
+      <h1>Prekių kategorijos</h1>
+      <div class="create">
+        <a href="./../items/index.php" class="btn btn--create">visos prekės</a>
+      </div>
+    </header>
 
     <table class="table">
       <tr class="row">
@@ -35,10 +40,10 @@
 
       <?php foreach ($categories as $key => $category) { ?>     
 
-        <?php $isEmpty = " disabled"; 
+        <?php $needDisabling = ""; 
           foreach ($categoriesNotEmpty as $value) {
             if (implode($value) == $category->id) {
-              $isEmpty = "";
+              $needDisabling = " disabled";
             } ;
           }
         ?>
@@ -53,7 +58,7 @@
           <td class="row__controll controlls">
 
             <div class="controlls__item">
-              <a href="./show.php?id=<?= $category->id ?>" class="btn btn--show">go to</a>
+              <a href="./show.php?category-id=<?= $category->id ?>" class="btn btn--show">go to</a>
             </div>
 
             <div class="controlls__item">
@@ -66,7 +71,7 @@
             <div class="controlls__item">
               <form action="./index.php" method="post">
               <input type="hidden" name="id" value="<?= $category->id ?>">
-              <button class="btn btn--delete"<?= $isEmpty?>>delete</button>
+              <button class="btn btn--delete"<?= $needDisabling?>>delete</button>
             </form>
             </div>
           </td>

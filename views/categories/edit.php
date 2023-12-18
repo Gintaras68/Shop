@@ -44,10 +44,10 @@
 
       <div class="edit-form__items">
         <label for="edit-descr">Kategorijos aprašymas</label>
-        <input class="edit-descr" type="text" name="description" id="edit-descr" value="<?= $category->description ?>"></input>
+        <textarea class="edit-descr" name="description" id="edit-desc" cols="60" rows="5"><?= $category->description ?></textarea>
       </div>
       
-      <div class="edit-form__items">
+      <div class="edit-form__controls">
         <input type="hidden" name="id" value="<?=$category->id?>">
         <button type="submit" class="btn edit-form__button">Išsaugoti duomenis</button>
         <a href="./index.php" class="btn">Back</a>

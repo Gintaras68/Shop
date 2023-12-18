@@ -10,7 +10,7 @@
   
   if($_SERVER['REQUEST_METHOD'] == "POST"){
     ItemController::destroy($_POST['id']);
-    $addr = "Location: ../categories/show.php?id=".$_POST['cat'];
+    $addr = "Location: ../categories/show.php?category-id=".$_POST['category-id'];
     header($addr);
   }
   
@@ -37,16 +37,18 @@
     <h1><?= $item->title ?></h1>
 
     <div class="present">
-      <div class="present__image"><img src="<?= $item->photo ?>" alt="" class="image"></div>
+    <?php ($item->photo != "") ? $photo = $item->photo : $photo = "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-15.png" ; ?>
+      <div class="present__image"><img src="<?= $photo ?>" alt="" class="image"></div>
       <div class="present__info">
         <p class="info__price">Kaina: <span><?= $item->price ?> &euro;</span></p>
         <p class="info__description"><?= $item->description ?></p>
       </div>
     </div>
+
     <div class="item-control">
     
       <div class="create">
-        <a href="../categories/show.php?id=<?= $item->category_id ?>" class="btn btn--create"><  <  < Back to list</a>
+        <a href="../categories/show.php?category-id=<?= $item->category_id ?>" class="btn btn--create"><  <  < Back to list</a>
       </div>
 
       <form action="./edit.php" method="get" class="item-control__form">
@@ -56,12 +58,12 @@
 
       <form action="<?= './show.php?id='. $item->id ?>" method="post" class="item-control__form">
         <input type="hidden" name="id" value="<?= $item->id ?>">
-        <input type="hidden" name="cat" value="<?= $item->category_id ?>">
+        <input type="hidden" name="category-id" value="<?= $item->category_id ?>">
         <button class="btn btn--delete">delete</button>
       </form>
 
       <div class="create">
-        <a href="./create.php?cat=<?=$item->category_id?>" class="btn btn--create">Add new item</a>
+        <a href="./create.php?category-id=<?=$item->category_id?>" class="btn btn--create">Add new item</a>
       </div>
     
     </div>
